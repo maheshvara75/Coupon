@@ -3,64 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eyefoster Scratch Coupon</title>
+<title>Eyefoster Premium Scratch Coupon</title>
 <style>
-body{font-family:Arial; background:#000; color:#fff; text-align:center; padding:20px}
-.card{max-width:350px; margin:auto; background:#111; padding:20px; border-radius:15px; box-shadow:0 0 15px rgba(255,165,0,0.6)}
-h1{color:orange; margin-bottom:5px}
-canvas{border-radius:10px; cursor:pointer; touch-action:none}
-.details{font-size:12px; margin-top:10px}
+body{margin:0; font-family:Arial; background:#000; display:flex; justify-content:center; align-items:center; height:100vh}
+.card{
+  width:360px;
+  background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+  border-radius:18px;
+  padding:15px;
+  color:#fff;
+  box-shadow:0 0 25px rgba(255,165,0,0.4);
+  border:1px solid rgba(255,165,0,0.3);
+}
+.logo{width:180px; margin:auto; display:block; margin-bottom:10px}
+h1{font-size:20px; text-align:center; color:#f5a623; margin:5px 0}
+p{text-align:center; font-size:13px; margin:5px 0}
+
+.scratch-container{position:relative; margin:15px auto; width:300px}
+canvas{border-radius:12px}
+
+.badge{
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  background:orange;
+  color:#000;
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:bold;
+  border-radius:8px;
+}
+
+.footer{font-size:11px; margin-top:10px; text-align:center; opacity:0.8}
+.highlight{color:#f5a623; font-weight:bold}
 </style>
 </head>
 <body>
 <div class="card">
-<h2>eyefoster.com</h2>
-<h1>Scratch & Win</h1>
-<p>DAREON & IMPLICIT Eyewear</p>
 
-<div style="position:relative; display:inline-block;">
+<img src="brand_logo.png" class="logo" alt="logo">
+
+<h1>SCRATCH & WIN DISCOUNT</h1>
+<p>On <span class="highlight">DAREON</span> & <span class="highlight">IMPLICIT</span> Eyewear</p>
+
+<div class="scratch-container">
+  <div class="badge">SCRATCH</div>
   <canvas id="bg" width="300" height="120"></canvas>
-  <canvas id="scratch" width="300" height="120" style="position:absolute; left:0; top:0;"></canvas>
+  <canvas id="scratch" width="300" height="120" style="position:absolute; left:0; top:0"></canvas>
 </div>
 
-<div class="details">
-<p>Valid till: 15-07-2026</p>
+<p class="highlight">Scratch to reveal your offer</p>
+
+<div class="footer">
+<p>Valid till: <b>15-07-2026</b></p>
 <p>📞 8141417434</p>
-<p>Krishna Darshan Complex, Jamnagar</p>
+<p>Krishna Darshan Complex, Ground Floor,<br>Nr Under Bridge, Samarpan Circle, Jamnagar</p>
 </div>
+
 </div>
 
 <script>
-// Weighted discount
-const discounts=[5,5,5,10,10,15,20,25,30,35];
+// weighted discounts
+const discounts=[5,5,10,10,15,20,25,30,35];
 const selected=discounts[Math.floor(Math.random()*discounts.length)];
-
-// Coupon code
 const couponCode="EF"+Math.floor(100000+Math.random()*900000);
 
-// BACKGROUND CANVAS (hidden reward)
+// background (hidden result)
 const bg=document.getElementById("bg");
 const bgCtx=bg.getContext("2d");
 
-bgCtx.fillStyle="#222";
+// gradient background
+const grad=bgCtx.createLinearGradient(0,0,300,120);
+grad.addColorStop(0,"#111");
+grad.addColorStop(1,"#333");
+bgCtx.fillStyle=grad;
 bgCtx.fillRect(0,0,300,120);
 
-bgCtx.fillStyle="orange";
-bgCtx.font="bold 24px Arial";
+// text
+bgCtx.fillStyle="#f5a623";
+bgCtx.font="bold 26px Arial";
 bgCtx.textAlign="center";
-bgCtx.fillText(selected+"% OFF",150,55);
+bgCtx.fillText(selected+"% OFF",150,50);
 
+bgCtx.fillStyle="#fff";
 bgCtx.font="14px Arial";
 bgCtx.fillText("Code: "+couponCode,150,85);
 
-// SCRATCH LAYER
+// scratch layer
 const canvas=document.getElementById("scratch");
 const ctx=canvas.getContext("2d");
 
-ctx.fillStyle="#999";
+ctx.fillStyle="#c0c0c0";
 ctx.fillRect(0,0,300,120);
 ctx.fillStyle="#000";
-ctx.font="18px Arial";
+ctx.font="16px Arial";
 ctx.textAlign="center";
 ctx.fillText("Scratch Here",150,65);
 
@@ -69,11 +105,11 @@ let isDrawing=false;
 function scratch(x,y){
  ctx.globalCompositeOperation='destination-out';
  ctx.beginPath();
- ctx.arc(x,y,15,0,Math.PI*2);
+ ctx.arc(x,y,14,0,Math.PI*2);
  ctx.fill();
 }
 
-// Desktop
+// mouse
 canvas.addEventListener("mousedown",()=>isDrawing=true);
 canvas.addEventListener("mouseup",()=>isDrawing=false);
 canvas.addEventListener("mousemove",(e)=>{
@@ -82,7 +118,7 @@ canvas.addEventListener("mousemove",(e)=>{
  scratch(e.clientX-rect.left,e.clientY-rect.top);
 });
 
-// Mobile
+// touch
 canvas.addEventListener("touchstart",()=>isDrawing=true);
 canvas.addEventListener("touchend",()=>isDrawing=false);
 canvas.addEventListener("touchmove",(e)=>{
@@ -92,5 +128,6 @@ canvas.addEventListener("touchmove",(e)=>{
  scratch(touch.clientX-rect.left,touch.clientY-rect.top);
 });
 </script>
+
 </body>
 </html>
