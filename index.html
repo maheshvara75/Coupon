@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,52 +16,24 @@ body{margin:0; font-family:Arial; background:#000; display:flex; justify-content
 }
 .logo{width:180px; margin:auto; display:block; margin-bottom:10px}
 h1{font-size:20px; text-align:center; color:#f5a623; margin:5px 0}
-p{text-align:center; font-size:13px; margin:5px 0}
+p{text-align:center; font-size:13px; margin:5px 0}.scratch-container{position:relative; margin:15px auto; width:300px} canvas{border-radius:12px}
 
-.scratch-container{position:relative; margin:15px auto; width:300px}
-canvas{border-radius:12px}
+.badge{ position:absolute; top:-10px; right:-10px; background:orange; color:#000; padding:5px 8px; font-size:10px; font-weight:bold; border-radius:8px; }
 
-.badge{
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  background:orange;
-  color:#000;
-  padding:5px 8px;
-  font-size:10px;
-  font-weight:bold;
-  border-radius:8px;
-}
+.footer{font-size:11px; margin-top:10px; text-align:center; opacity:0.8} .highlight{color:#f5a623; font-weight:bold} </style>
 
-.footer{font-size:11px; margin-top:10px; text-align:center; opacity:0.8}
-.highlight{color:#f5a623; font-weight:bold}
-</style>
 </head>
 <body>
-<div class="card">
-
-<img src="brand_logo.png" class="logo" alt="logo">
-
-<h1>SCRATCH & WIN DISCOUNT</h1>
-<p>On <span class="highlight">DAREON</span> & <span class="highlight">IMPLICIT</span> Eyewear</p>
-
-<div class="scratch-container">
+<div class="card"><img src="brand_logo.png" class="logo" alt="logo"><h1>SCRATCH & WIN DISCOUNT</h1>
+<p>On <span class="highlight">DAREON</span> & <span class="highlight">IMPLICIT</span> Eyewear</p><div class="scratch-container">
   <div class="badge">SCRATCH</div>
   <canvas id="bg" width="300" height="120"></canvas>
   <canvas id="scratch" width="300" height="120" style="position:absolute; left:0; top:0"></canvas>
-</div>
-
-<p class="highlight">Scratch to reveal your offer</p>
-
-<div class="footer">
+</div><p class="highlight">Scratch to reveal your offer</p><div class="footer">
 <p>Valid till: <b>15-07-2026</b></p>
 <p>📞 8141417434</p>
 <p>Krishna Darshan Complex, Ground Floor,<br>Nr Under Bridge, Samarpan Circle, Jamnagar</p>
-</div>
-
-</div>
-
-<script>
+</div></div><script>
 // weighted discounts
 const discounts=[5,5,10,10,15,20,25,30,35];
 const selected=discounts[Math.floor(Math.random()*discounts.length)];
@@ -127,7 +98,5 @@ canvas.addEventListener("touchmove",(e)=>{
  const touch=e.touches[0];
  scratch(touch.clientX-rect.left,touch.clientY-rect.top);
 });
-</script>
-
-</body>
+</script></body>
 </html>
